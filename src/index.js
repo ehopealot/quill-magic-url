@@ -69,11 +69,11 @@ export default class MagicUrl {
     })
   }
   registerTypeListener () {
-    this.quill.on('text-change', (delta) => {
+    this.quill.on('text-change', (delta, oldDelta, source) => {
       const ops = delta.ops
       // Only return true, if last operation includes whitespace inserts
       // Equivalent to listening for enter, tab or space
-      if (!ops || ops.length < 1 || ops.length > 2) {
+      if (!ops || ops.length < 1 || ops.length > 2 || source !== 'user') {
         return
       }
       const lastOp = ops[ops.length - 1]
