@@ -105,13 +105,13 @@ export default class MagicUrl {
     const ops = new Delta()
       .retain(index)
       .retain(url.length, {link: this.urlNormalizer(url)})
-    this.quill.updateContents(ops)
+    this.quill.updateContents(ops, 'user')
   }
   textToMail (index, mail) {
     const ops = new Delta()
       .retain(index)
       .retain(mail.length, {link: this.mailNormalizer(mail)})
-    this.quill.updateContents(ops)
+    this.quill.updateContents(ops, 'user')
   }
   normalize (url) {
     if (this.options.normalizeRegularExpression.test(url)) {
